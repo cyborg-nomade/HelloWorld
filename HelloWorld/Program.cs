@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace HelloWorld
 {
@@ -6,17 +7,30 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            try
-            {
-                string str = "true";
-                bool b = Convert.ToBoolean(str);
-                Console.WriteLine(b);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("The number could not be converted to a byte");
-            }
-            
+            var a = 10;
+            var b = 3;
+
+            Console.WriteLine(a+b);
+            Console.WriteLine(a/b);
+            Console.WriteLine((float)a/(float)b);
+
+            var a1 = 1;
+            var b2 = 2;
+            var c3 = 3;
+
+            Console.WriteLine(a1+b2*c3);
+            Console.WriteLine((a1+b2)*c3);
+
+            Console.WriteLine(a1>b2);
+            Console.WriteLine(a1==b2);
+            Console.WriteLine(a1!=b2);
+            Console.WriteLine(!(a1!=b2));
+
+            Console.WriteLine(c3 > b2 && c3 > a1);
+            Console.WriteLine(c3 > b2 && c3 == a1);
+            Console.WriteLine(c3 > b2 || c3 == a1);
+
+
         }
     }
 }
