@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using HelloWorld.Math;
 
 namespace HelloWorld
 {
@@ -7,30 +8,16 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            var a = 10;
-            var b = 3;
+            var uriel = new Person
+            {
+                FirstName = "Uriel",
+                LastName = "Fiori"
+            };
+            uriel.Introduce();
 
-            Console.WriteLine(a+b);
-            Console.WriteLine(a/b);
-            Console.WriteLine((float)a/(float)b);
-
-            var a1 = 1;
-            var b2 = 2;
-            var c3 = 3;
-
-            Console.WriteLine(a1+b2*c3);
-            Console.WriteLine((a1+b2)*c3);
-
-            Console.WriteLine(a1>b2);
-            Console.WriteLine(a1==b2);
-            Console.WriteLine(a1!=b2);
-            Console.WriteLine(!(a1!=b2));
-
-            Console.WriteLine(c3 > b2 && c3 > a1);
-            Console.WriteLine(c3 > b2 && c3 == a1);
-            Console.WriteLine(c3 > b2 || c3 == a1);
-
-
+            Calculator calculator = new Calculator();
+            var result = calculator.Add(1, 2);
+            Console.WriteLine(result);
         }
     }
 }
