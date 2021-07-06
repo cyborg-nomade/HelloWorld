@@ -8,20 +8,23 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            for (int i = 0; i < 10; i++)
+            var name = "John Smith";
+
+            /*for (int i = 0; i < name.Length; i++)
             {
-                if (i%2==0)
-                {
-                    Console.WriteLine(i);
-                }
+                Console.WriteLine(name[i]);
+            }*/
+
+            foreach (var character in name)
+            {
+                Console.WriteLine(character);
             }
 
-            for (int i = 10; i >= 0; i--)
+            var numbers = new int[] { 1, 2, 3, 4 };
+
+            foreach (var number in numbers)
             {
-                if (i%2==0)
-                {
-                    Console.WriteLine(i);
-                }
+                Console.WriteLine(number);
             }
         }
     }
