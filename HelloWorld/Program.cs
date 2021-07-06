@@ -8,37 +8,41 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    if (i%2==0)
-            //    {
-            //        Console.WriteLine(i);
-            //    }
-            //}
-
-            var i=0;
-            while (i<10)
+            var random = new Random();
+            for (int i = 0; i < 10; i++)
             {
-                if (i%2==0)
-                {
-                    Console.WriteLine(i);
-                }
-
-                i++;
+                Console.WriteLine(random.Next());
+            }
+            
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine(random.Next(1,10));
             }
 
-            while (true)
+            /*for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine("Type your name: ");
-                var input = Console.ReadLine();
-
-                if (String.IsNullOrWhiteSpace(input))
-                {
-                    break;
-                }
-
-                Console.WriteLine("@Echo: " + input);
+                Console.Write((char)random.Next(97, 122));
             }
+            Console.WriteLine();*/
+
+            /*for (int i = 0; i < 10; i++)
+            {
+                Console.Write((char)('a' + random.Next(0,26)));
+            }
+            Console.WriteLine();*/
+
+            const int passwordLength = 8;
+
+            var buffer = new char[passwordLength];
+
+            for (int i = 0; i < passwordLength; i++)
+            {
+                buffer[i] = (char)('a' + random.Next(0,26));
+            }
+
+            var password = new string(buffer);
+
+            Console.WriteLine(password);
         }
     }
 }
