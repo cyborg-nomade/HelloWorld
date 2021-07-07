@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using HelloWorld.Math;
 
@@ -8,103 +10,165 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            //1 - Write a program to count how many numbers between 1 and 100 are divisible by 3 with no remainder.Display the count on the console.
+            /*1- When you post a message on Facebook, depending on the number of people who like your post, Facebook displays different information.
 
-            var divisibleBy3 = 0;
+                If no one likes your post, it doesn't display anything.
+                If only one person likes your post, it displays: [Friend's Name] likes your post.
+                If two people like your post, it displays: [Friend 1] and [Friend 2] like your post.
+                If more than two people like your post, it displays: [Friend 1], [Friend 2] and [Number of Other People] others like your post.
+                Write a program and continuously ask the user to enter different names, until the user presses Enter (without supplying a name). Depending on the number of names provided, display a message based on the above pattern.*/
 
-            for (int i = 1; i <= 100; i++)
+            var isExit = false;
+            var namesList = new List<string>()
             {
-                if (i%3==0)
-                {
-                    divisibleBy3++;
-                }
-            }
 
-            Console.WriteLine(divisibleBy3);
+            };
 
-            //2 - Write a program and continuously ask the user to enter a number or "ok" to exit. Calculate the sum of all the previously entered numbers and display it on the console.
-
-            var isOK = false;
-            var sum = 0;
-
-            while (!isOK)
+            while (!isExit)
             {
-                Console.WriteLine("Type a number or OK to exit");
-                var answer = Console.ReadLine();
+                Console.WriteLine("Type a name: ");
+                var newName = Console.ReadLine();
 
-                if (answer=="OK")
+                if (newName!="")
                 {
-                    isOK = true;
+                    namesList.Add(newName);
                 }
                 else
                 {
-                    sum += Convert.ToInt32(answer);
-                    Console.WriteLine(sum);
+                    isExit = true;
                 }
             }
 
-            //3 - Write a program and ask the user to enter a number. Compute the factorial of the number and print it on the console. For example, if the user enters 5, the program should calculate 5 x 4 x 3 x 2 x 1 and display it as 5! = 120.
-
-            Console.WriteLine("Type a number to calculate a factorial");
-            var number = Convert.ToInt32(Console.ReadLine());
-
-            var factorial = 1;
-
-            for (int i = number; i > 0; i--)
+            switch (namesList.Count)
             {
-                factorial *= i;
-            }
-
-            Console.WriteLine(number + "! = " + factorial);
-
-            //4 - Write a program that picks a random number between 1 and 10.Give the user 4 chances to guess the number.If the user guesses the number, display “You won"; otherwise, display “You lost". (To make sure the program is behaving correctly, you can display the secret number on the console first.)
-
-            var random = new Random();
-
-            var secretNumber = random.Next(1, 10);
-
-            Console.WriteLine(secretNumber);
-
-            for (int i = 0; i < 4; i++)
-            {
-                Console.WriteLine("Try to guess the secret number:");
-                var guess = Convert.ToInt32(Console.ReadLine());
-
-                if (guess == secretNumber)
-                {
-                    Console.WriteLine("You won!");
+                case 0:
+                    Console.WriteLine("");
                     break;
+
+                case 1:
+                    Console.WriteLine(namesList[0] + " likes your post");
+                    break;
+
+                case 2:
+                    Console.WriteLine(namesList[0] + " and " + namesList[1] + " like your post");
+                    break;
+
+                default:
+                    Console.WriteLine(namesList[0] + " and " + namesList[1] + " and " + (namesList.Count-2) + " other people like your post");
+                    break;
+            }
+
+            /*2- Write a program and ask the user to enter their name. Use an array to reverse the name and then store the result in a new string. Display the reversed name on the console.*/
+
+            Console.WriteLine("Write your name: ");
+            var input = Console.ReadLine();
+            if (input != null)
+            {
+                var name = input.ToCharArray();
+                Array.Reverse(name);
+                var reversedName = new string(name);
+                Console.WriteLine(reversedName + " is your reversed name");
+            }
+
+            /*3- Write a program and ask the user to enter 5 numbers. If a number has been previously entered, display an error message and ask the user to re-try. Once the user successfully enters 5 unique numbers, sort them and display the result on the console.*/
+
+            var numbers = new int[5];
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("Enter a new number: ");
+                var inputNumber = Convert.ToInt32(Console.ReadLine());
+                while (numbers.Contains(inputNumber))
+                {
+                    Console.WriteLine("This number has already been entered, type another: ");
+                    inputNumber = Convert.ToInt32(Console.ReadLine());
+                }
+
+                numbers[i] = inputNumber;
+            }
+
+            Array.Sort(numbers);
+            Console.WriteLine("This is your sorted array: ");
+            foreach (var n in numbers)
+            {
+                Console.WriteLine(n);
+            }
+
+            /*4- Write a program and ask the user to continuously enter a number or type "Quit" to exit. The list of numbers may include duplicates. Display the unique numbers that the user has entered.*/
+
+            var isQuit = false;
+            var numbersList = new List<int>()
+            {
+
+            };
+
+            while (!isQuit)
+            {
+                Console.WriteLine("Type a number or QUIT to exit: ");
+                var inputString = Console.ReadLine();
+                if (inputString == "QUIT")
+                {
+                    isQuit = true;
                 }
                 else
                 {
-                    Console.WriteLine("Wrong answer, try again!");
-                }
-
-                if (i==3 && guess!=secretNumber)
-                {
-                    Console.WriteLine("You lost.");
+                    numbersList.Add(Convert.ToInt32(inputString));
                 }
             }
 
-            //5 - Write a program and ask the user to enter a series of numbers separated by comma.Find the maximum of the numbers and display it on the console. For example, if the user enters “5, 3, 8, 1, 4", the program should display 8.
+            var displayNumbersList = new List<int>();
 
-            Console.WriteLine("Type a series of numbers separated by a comma");
-            var answerString = Console.ReadLine();
-
-            var numbersArray = answerString.Split(',');
-            var maximum = 0;
-
-            foreach (var numberString in numbersArray)
+            foreach (var unique in numbersList)
             {
-                var currentNumber = Convert.ToInt32(numberString);
-
-                if (currentNumber>maximum)
+                if (!displayNumbersList.Contains(unique))
                 {
-                    maximum = currentNumber;
+                    displayNumbersList.Add(unique);
                 }
             }
 
-            Console.WriteLine("The highest number is: "+ maximum);
+            foreach (var display in displayNumbersList)
+            {
+                Console.WriteLine(display);
+            }
+
+            /*5- Write a program and ask the user to supply a list of comma separated numbers (e.g 5, 1, 9, 2, 10). If the list is empty or includes less than 5 numbers, display "Invalid List" and ask the user to re-try; otherwise, display the 3 smallest numbers in the list.*/
+            var isValid = false;
+
+            while (!isValid)
+            {
+                Console.WriteLine("Type a list of 5 comma-separated numbers");
+                var inputString2 = Console.ReadLine();
+
+                var numberList = new List<int>()
+                {
+
+                };
+
+                if (inputString2 != "")
+                {
+                    var inputStringArray = inputString2.Split(',');
+                    foreach (var s in inputStringArray)
+                    {
+                        numberList.Add(Convert.ToInt32(s));
+                    }
+                }
+                else
+                {
+                    numberList.Clear();
+                }
+
+                if (numberList.Count < 5 || !numberList.Any())
+                {
+                    Console.WriteLine("Invalid List, try again");
+                    continue;
+                }
+                else
+                {
+                    isValid = true;
+                    numberList.Sort();
+                    Console.WriteLine("The three smallest numbers are:" + numberList[0] + ","+ numberList[1]+","+numberList[2]);
+                }
+            }
         }
     }
 }
