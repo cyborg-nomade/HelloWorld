@@ -9,20 +9,38 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            // Creating
-            var timeSpan = new TimeSpan(1, 2, 3);
-            var timeSpan1 = new TimeSpan(1, 0, 0);
-            var timeSpan2 = TimeSpan.FromHours(1);
+            var fullName = "Uriel Fiori ";
+            Console.WriteLine("Trim: '{0}'", fullName.Trim());
+            Console.WriteLine("ToUpper: '{0}'", fullName.Trim().ToUpper());
 
-            var start = DateTime.Now;
-            var end = DateTime.Now.AddMinutes(2);
-            var duration = end - start;
-            Console.WriteLine("Duration = " + duration);
+            var index = fullName.IndexOf(' ');
+            var firstName = fullName.Substring(0,index);
+            var lastName = fullName.Substring(index + 1);
+            Console.WriteLine("First Name: " + firstName);
+            Console.WriteLine("Last Name: " + lastName);
 
+            var names = fullName.Split(' ');
+            Console.WriteLine("First Name: " + names[0]);
+            Console.WriteLine("Last Name: " + names[1]);
 
-            // Properties
-            Console.WriteLine("Minutes: " + timeSpan.Minutes);
-            Console.WriteLine("Total Minutes: " + timeSpan.TotalMinutes);
+            Console.WriteLine(fullName.Replace("Uriel", "Uriel Alexis"));
+
+            if (String.IsNullOrEmpty(""))
+            {
+                Console.WriteLine("String is null or empty");
+            }
+
+            if (String.IsNullOrWhiteSpace(" "))
+            {
+                Console.WriteLine("String is null or whitespace");
+            }
+
+            var str = "25";
+            var age = Convert.ToByte(str);
+            Console.WriteLine(age);
+
+            float price = 29.95f;
+            Console.WriteLine(price.ToString("C0"));
         }
     }
 }
