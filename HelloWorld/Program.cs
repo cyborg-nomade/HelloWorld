@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using HelloWorld.Math;
 
@@ -9,38 +10,29 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            var fullName = "Uriel Fiori ";
-            Console.WriteLine("Trim: '{0}'", fullName.Trim());
-            Console.WriteLine("ToUpper: '{0}'", fullName.Trim().ToUpper());
+            var builder = new StringBuilder();
+            var builder2 = new StringBuilder("Hello World");
 
-            var index = fullName.IndexOf(' ');
-            var firstName = fullName.Substring(0,index);
-            var lastName = fullName.Substring(index + 1);
-            Console.WriteLine("First Name: " + firstName);
-            Console.WriteLine("Last Name: " + lastName);
+            builder.Append('-', 10)
+                .AppendLine()
+                .Append("Headers")
+                .AppendLine()
+                .Append('-', 10);
 
-            var names = fullName.Split(' ');
-            Console.WriteLine("First Name: " + names[0]);
-            Console.WriteLine("Last Name: " + names[1]);
+            Console.WriteLine(builder);
 
-            Console.WriteLine(fullName.Replace("Uriel", "Uriel Alexis"));
+            builder.Replace('-', '+');
+            Console.WriteLine(builder);
 
-            if (String.IsNullOrEmpty(""))
-            {
-                Console.WriteLine("String is null or empty");
-            }
+            builder.Remove(0, 10);
+            Console.WriteLine(builder);
 
-            if (String.IsNullOrWhiteSpace(" "))
-            {
-                Console.WriteLine("String is null or whitespace");
-            }
+            builder.Insert(0, new string('-',10));
+            Console.WriteLine(builder);
 
-            var str = "25";
-            var age = Convert.ToByte(str);
-            Console.WriteLine(age);
+            Console.WriteLine("First Char: "+ builder2[0]);
 
-            float price = 29.95f;
-            Console.WriteLine(price.ToString("C0"));
         }
+
     }
 }
