@@ -10,29 +10,22 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            var builder = new StringBuilder();
-            var builder2 = new StringBuilder("Hello World");
-
-            builder.Append('-', 10)
-                .AppendLine()
-                .Append("Headers")
-                .AppendLine()
-                .Append('-', 10);
-
-            Console.WriteLine(builder);
-
-            builder.Replace('-', '+');
-            Console.WriteLine(builder);
-
-            builder.Remove(0, 10);
-            Console.WriteLine(builder);
-
-            builder.Insert(0, new string('-',10));
-            Console.WriteLine(builder);
-
-            Console.WriteLine("First Char: "+ builder2[0]);
-
+            Console.WriteLine("What's your name? ");
+            var name = Console.ReadLine();
+            var reversed = ReverseName(name);
+            Console.WriteLine("Reversed name: " + reversed);
         }
 
+        public static string ReverseName(string name)
+        {
+            var array = new char[name.Length];
+            for (int i = name.Length; i > 0; i--)
+            {
+                array[name.Length - i] = name[i - 1];
+            }
+
+            return new string(array);
+
+        }
     }
 }
