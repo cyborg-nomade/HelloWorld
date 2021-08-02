@@ -7,25 +7,12 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            Directory.CreateDirectory(@"c:\USERS\urielf\test");
+            var path = @"C:\Users\urielf\test.txt";
 
-            //var files = Directory.GetFiles(@"C:\Users\urielf\Source\Repos", "*.*", SearchOption.AllDirectories);
-            //foreach (var file in files)
-            //{
-            //    Console.WriteLine(file);
-            //}
-
-            var directories = Directory.GetDirectories(@"c:\Users\urielf\Source", "*.*", SearchOption.AllDirectories);
-            foreach (var directory in directories)
-            {
-                Console.WriteLine(directory);
-            }
-
-            Directory.Exists("...");
-
-            var directoryInfo = new DirectoryInfo("...");
-            directoryInfo.GetFiles();
-            directoryInfo.GetDirectories();
+            Console.WriteLine("Extension: " + Path.GetExtension(path));
+            Console.WriteLine("File Name: " + Path.GetFileName(path));
+            Console.WriteLine("File Name without Extension: " + Path.GetFileNameWithoutExtension(path));
+            Console.WriteLine("Directory Name: " + Path.GetDirectoryName(path));
         }
     }
 }
